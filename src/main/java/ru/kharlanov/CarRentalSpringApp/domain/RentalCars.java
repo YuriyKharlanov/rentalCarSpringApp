@@ -9,21 +9,28 @@ public class RentalCars {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "carsId")
+    private Cars carsId;
+
     private Date toRental;
     private Date fromRental;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customerId")
     private Customers customers;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "rentalpoint_id")
+    @JoinColumn(name = "rentalPointId")
     private RentalPoint rentalPoint;
+
+    //private Long carsIdNumber;
 
     public RentalCars() {
     }
 
-    public RentalCars(Date toRental, Date fromRental, Customers customers, RentalPoint rentalPoint) {
+    public RentalCars(Cars carsId, Date toRental, Date fromRental, Customers customers, RentalPoint rentalPoint) {
+        this.carsId = carsId;
         this.toRental = toRental;
         this.fromRental = fromRental;
         this.customers = customers;
@@ -36,6 +43,22 @@ public class RentalCars {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCarsId() {
+        return carsId.getVendorModelName();
+    }
+
+    public Long getCarsIdNumber() {
+        return carsId.getId();
+    }
+
+    public String getGovNumber() {
+        return carsId.getGovernNumber();
+    }
+
+    public void setCarsId(Cars carsId) {
+        this.carsId = carsId;
     }
 
     public Date getToRental() {
