@@ -16,11 +16,9 @@ import ru.kharlanov.CarRentalSpringApp.repos.CarsRepo;
 import ru.kharlanov.CarRentalSpringApp.repos.CustomersRepo;
 import ru.kharlanov.CarRentalSpringApp.repos.RentalCarsRepo;
 import ru.kharlanov.CarRentalSpringApp.repos.RentalPointRepo;
+import ru.kharlanov.CarRentalSpringApp.service.AverByCarPointForFilterRentalCar;
 
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class MainController {
@@ -39,11 +37,6 @@ public class MainController {
     @GetMapping("/")
     public String Greeting(Map<String, Object> model) {
         return "greeting";
-    }
-
-    @GetMapping("/registration")
-    public String Registration(Map<String, Object> model) {
-        return "registration";
     }
 
     @GetMapping("/main")
@@ -84,7 +77,7 @@ public class MainController {
     @GetMapping(path = "/filter/{carsId}"/*, params = "myParam=myValue"*/)
     public String findByCarsId(@PathVariable Cars carsId, Model model) {
         Iterable<RentalCars> messages2 = rentalCarsRepo.findAllByCarsId(carsId);
-        //String averTime = AverageRentalTime(messages2);
+        String averTime = AverageRentalTime(messages2);
         Iterable<Cars> carList2 = carsRepo.findAll();
         Iterable<Customers> customerList2 = customersRepo.findAll();
         Iterable<RentalPoint> rentalPointsList2 = rentalPointRepo.findAll();
@@ -92,22 +85,36 @@ public class MainController {
         model.addAttribute("carList", carList2);
         model.addAttribute("customerList", customerList2);
         model.addAttribute("rentalPointsList", rentalPointsList2);
-        //model.addAttribute("averTime", averTime);
-        return "main";
+        model.addAttribute("averTime", averTime);
+        return "filtercar";
     }
 
     String AverageRentalTime(Iterable<RentalCars> rentalCarsList) {
         int count = 0;
         Long summ = 0l, unixTime = 0l;
+        List<AverByCarPointForFilterRentalCar> aver = new ArrayList<>();
         Iterator<RentalCars> iter = rentalCarsList.iterator();
-        while(iter.hasNext()){
-            count++;
-            Long date = Long.parseLong(iter.next().getFromRental().toString()) - Long.parseLong(iter.next().getToRental().toString());
-            summ = summ + date;
+        while(iter.hasNext()) {
+            RentalCars iteral = iter.next();
+            long first = iteral.getToRental().getTime();
+            long second = iteral.getFromRental().getTime();
+            if (first != second && second > first) {
+                count++;
+                long diffInMillies = Math.abs(second - first);
+                if (diffInMillies > 0) summ = summ + diffInMillies;
+            }
+
+
+            if (aver.contains(iteral.getRentalPoint())) {
+
+            } else {
+                AverByCarPointForFilterRentalCar averList = new AverByCarPointForFilterRentalCar();
+                averList.setRentalpoint(iteral.getRentalPoint());
+                //averList.setSumRentalTime();
+            }
+
         }
-        if (count > 0 ) {
-             unixTime = summ/count;
-        }
+        if (count > 0 ) unixTime = summ/count;
         String result = new java.text.SimpleDateFormat("dd HH:mm").format(new Date(unixTime * 1000));
         return result;
     }

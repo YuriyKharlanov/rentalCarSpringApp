@@ -2,14 +2,6 @@
 <#import "parts/inputFormTemplate.ftl" as a>
 <@c.page>
     <div>
-        <@a.inputRentalCarsinfo />
-    </div>
-
-    <div id="resultid1">
-
-    </div>
-
-    <div>
         <table class="mt-2 mb-5" border="">
             <tr>
                 <th>id</th>
@@ -23,7 +15,8 @@
             <#list messages as message>
             <tr>
                 <td>${message.id}</td>
-                <td><span><a href="/filter/${message.carsIdNumber}" onclick="AjaxSendURL('/filter/${message.carsIdNumber}');return false;">${message.carsId}</a></span></td>
+                <#--<td><span><a href="/filter/${message.carsIdNumber}">${message.carsId}</a></span></td>-->
+                <td><span>${message.carsId}</span></td>
                 <td><i>${message.toRental?date}</i></td>
                 <td><i>${message.fromRental?date}</i></td>
                 <td><i>${message.customers}</i></td>
@@ -33,7 +26,10 @@
             <#else>
             <td colspan="7">No message</td>
                 </#list>
-            <#--${averTime}-->
+            <#--<span><a href="/main" onclick="AjaxSendURL('/main');return false;">Вернуться в "Прокат автомобилей"</a></span>-->
+            <span><a href="/main">Вернуться в "Прокат автомобилей"</a></span>
+            Среднее время аренды автомобиля (дней часов:минут): ${averTime?if_exists}
+            // TODO (переделать чтобы вывело по каждой точке)
         </table>
     </div>
 </@c.page>
