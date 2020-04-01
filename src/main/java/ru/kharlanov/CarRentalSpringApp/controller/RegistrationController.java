@@ -33,7 +33,7 @@ public class RegistrationController {
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
-        userRepo.save(user);
+        userRepo.save(user);  // TODO тут нужно поставить фильтр
 
         return "redirect:/";
     }

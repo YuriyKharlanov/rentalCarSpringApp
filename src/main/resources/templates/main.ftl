@@ -17,7 +17,7 @@
                 <th>Дата начала аренды</th>
                 <th>Дата возврата из аренды</th>
                 <th>Арендатор</th>
-                <th>Точка возврата</th>
+                <th>Пункт проката</th>
                 <th>Гос. номер автомобиля</th>
             </tr>
             <#list messages as message>
@@ -33,7 +33,6 @@
             <#else>
             <td colspan="7">No message</td>
                 </#list>
-            <#--${averTime}-->
         </table>
     </div>
 </@c.page>

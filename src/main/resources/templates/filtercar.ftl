@@ -9,7 +9,7 @@
                 <th>Дата начала аренды</th>
                 <th>Дата возврата из аренды</th>
                 <th>Арендатор</th>
-                <th>Точка возврата</th>
+                <th>Пункт проката</th>
                 <th>Гос. номер автомобиля</th>
             </tr>
             <#list messages as message>
@@ -28,8 +28,9 @@
                 </#list>
             <#--<span><a href="/main" onclick="AjaxSendURL('/main');return false;">Вернуться в "Прокат автомобилей"</a></span>-->
             <span><a href="/main">Вернуться в "Прокат автомобилей"</a></span>
-            Среднее время аренды автомобиля (дней часов:минут): ${averTime?if_exists}
-            // TODO (переделать чтобы вывело по каждой точке)
+            <#list averTimeList as averTimes>
+                <li>${averTimes}</li>
+            </#list>
         </table>
     </div>
 </@c.page>

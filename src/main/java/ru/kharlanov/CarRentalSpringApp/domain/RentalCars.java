@@ -24,8 +24,6 @@ public class RentalCars {
     @JoinColumn(name = "rentalPointId")
     private RentalPoint rentalPoint;
 
-    //private Long carsIdNumber;
-
     public RentalCars() {
     }
 
@@ -88,6 +86,8 @@ public class RentalCars {
     public String getRentalPoint() {
         return rentalPoint.getPointName();
     }
+
+    public Long getRentalPointId() { return rentalPoint.getId(); }
 
     public void setRentalPoint(RentalPoint rentalPoint) {
         this.rentalPoint = rentalPoint;
