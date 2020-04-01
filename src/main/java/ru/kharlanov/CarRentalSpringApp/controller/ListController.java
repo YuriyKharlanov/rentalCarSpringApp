@@ -20,7 +20,7 @@ public class ListController {
     private CustomersRepo customersRepo;
 
     @Autowired
-    RentalPointRepo rentalPointRepo;
+    private RentalPointRepo rentalPointRepo;
 
     @GetMapping("/carstable")
     public String Carstable(Model model) {
