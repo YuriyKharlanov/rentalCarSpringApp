@@ -26,7 +26,6 @@
             <#else>
             <td colspan="7">No message</td>
                 </#list>
-            <#--<span><a href="/main" onclick="AjaxSendURL('/main');return false;">Вернуться в "Прокат автомобилей"</a></span>-->
             <span><a href="/main">Вернуться в "Прокат автомобилей"</a></span>
             <#list averTimeList as averTimes>
                 <li>${averTimes}</li>

@@ -23,7 +23,6 @@
             <#list messages as message>
             <tr>
                 <td>${message.id}</td>
-                <#--<td><span><a href="/filter/${message.carsIdNumber}">${message.carsId}</a></span></td>-->
                 <td><span><a href="/filter/${message.carsIdNumber}" onclick="AjaxSendURL('/filter/${message.carsIdNumber}');return false;">${message.carsId}</a></span></td>
                 <td><i>${message.toRental?date}</i></td>
                 <td><i>${message.fromRental?date}</i></td>

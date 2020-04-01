@@ -36,7 +36,7 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String Main(/*@RequestParam(required = false, defaultValue = "") String filter,*/
+    public String Main(
             Model model) {
         Iterable<RentalCars> messages1 = rentalCarsRepo.findAll();
         Iterable<Cars> carList1 = carsRepo.findAll();
@@ -70,7 +70,7 @@ public class MainController {
         return "main";
     }
 
-    @GetMapping(path = "/filter/{carsId}"/*, params = "myParam=myValue"*/)
+    @GetMapping(path = "/filter/{carsId}")
     public String findByCarsId(@PathVariable Cars carsId, Model model) {
         Iterable<RentalCars> messages2 = rentalCarsRepo.findAllByCarsId(carsId);
         List<String> averTime = AverageRentalTime(messages2);

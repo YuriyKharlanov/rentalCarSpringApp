@@ -1,6 +1,5 @@
 
 function AjaxSendURL(to) {
-    /*if (confirm("Позвонить на " + to + "?")) {*/
     //alert( 'обратились к скрипту' );
     jQuery.ajax({
         //url: "http://192.168.2.22/calls/callback.phtml", //Адрес подгружаемой страницы
@@ -16,7 +15,3 @@ function AjaxSendURL(to) {
         }
     });
 }
-    /*}
-    else {
-    }
-}*/
