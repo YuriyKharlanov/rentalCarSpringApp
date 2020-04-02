@@ -37,7 +37,7 @@ public class ControllerService {
         List<String> averTimeForEachPoint = new ArrayList<>();
         for (CarPointForFilterRentalCar currCarPointFromAverList : averList) {
             TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-            Long averUnixTime = currCarPointFromAverList.getSumRentalTime() / (long) currCarPointFromAverList.getCount();
+            Long averUnixTime = currCarPointFromAverList.getSumRentalTime() / currCarPointFromAverList.getCount();
             String resultDays = new java.text.SimpleDateFormat("dd").format(new Date(averUnixTime));
             String resultHours = new java.text.SimpleDateFormat("HH").format(new Date(averUnixTime));
             StringBuilder stringBuilder = new StringBuilder();
