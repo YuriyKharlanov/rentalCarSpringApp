@@ -26,6 +26,6 @@
                 </li>
             </#if>
         </ul>
-        <div class="navbar-text mr-3">Пользователь: ${name} </div><#if isAdmin> <@l.logout /></#if>
+        <div class="navbar-text mr-3">Пользователь: <div id="user-name-id">${name}</div></div><#if isAdmin> <@l.logout /></#if>
     </div>
 </nav>
