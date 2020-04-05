@@ -1,5 +1,6 @@
 package ru.kharlanov.CarRentalSpringApp.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kharlanov.CarRentalSpringApp.domain.CarPointForFilterRentalCar;
 import ru.kharlanov.CarRentalSpringApp.domain.RentalCars;
@@ -11,6 +12,8 @@ import java.util.TimeZone;
 
 @Service
 public class ControllerService {
+    @Autowired
+    CarPointForFilterRentalCar carPointForFilterRentalCar;
 
     public static List<String> AverageRentalTime(Iterable<RentalCars> rentalCarsList) {
         List<CarPointForFilterRentalCar> averList = new ArrayList<>();
@@ -43,7 +46,7 @@ public class ControllerService {
             StringBuilder stringBuilder = new StringBuilder();
             String jointResult = stringBuilder.append("В среднем в пункте ")
                     .append(currCarPointFromAverList.getRentalPointId())
-                    .append(" ").append(currCarPointFromAverList.getRentalpointName())
+                    .append(" ").append(currCarPointFromAverList.getRentalPointName())
                     .append(" автомобиль берут в прокат на ").append(resultDays).append(" дней и ").append(resultHours).append(" часов").toString();
             averTimeForEachPoint.add(jointResult);
         }
@@ -52,7 +55,7 @@ public class ControllerService {
 
     private static CarPointForFilterRentalCar createNewCarPointInAverList(RentalCars iterRentalCars, Long diffInMillies) {
         CarPointForFilterRentalCar carPointForFilterRentalCar = new CarPointForFilterRentalCar();
-        carPointForFilterRentalCar.setRentalpointName(iterRentalCars.getRentalPoint());
+        carPointForFilterRentalCar.setRentalPointName(iterRentalCars.getRentalPoint());
         carPointForFilterRentalCar.setRentalPointId(iterRentalCars.getRentalPointId());
         carPointForFilterRentalCar.setSumRentalTime(diffInMillies);
         carPointForFilterRentalCar.setCount(1);

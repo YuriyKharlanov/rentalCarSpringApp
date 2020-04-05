@@ -1,8 +1,12 @@
 package ru.kharlanov.CarRentalSpringApp.domain;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+@Component
+@Scope("prototype")
 public class CarPointForFilterRentalCar {
-    private String rentalpointName;
+    private String rentalPointName;
 
     private Long rentalPointId;
     private Long sumRentalTime;
@@ -25,12 +29,12 @@ public class CarPointForFilterRentalCar {
         this.count = count;
     }
 
-    public String getRentalpointName() {
-        return rentalpointName;
+    public String getRentalPointName() {
+        return rentalPointName;
     }
 
-    public void setRentalpointName(String rentalpointName) {
-        this.rentalpointName = rentalpointName;
+    public void setRentalPointName(String rentalPointName) {
+        this.rentalPointName = rentalPointName;
     }
 
     public Long getSumRentalTime() {
