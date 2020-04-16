@@ -90,4 +90,9 @@ public class MainController {
         model.addAttribute("averTimeList", averTime);
         return "filtercar";
     }
+
+    @GetMapping(path = "/rests")
+    public String restsView(Model model) {
+        return "rests";
+    }
 }

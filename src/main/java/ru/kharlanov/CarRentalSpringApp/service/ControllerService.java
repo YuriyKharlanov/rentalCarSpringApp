@@ -34,7 +34,7 @@ public class ControllerService {
                     }
                 }
                 if (countEmpty == 0) averList.add(createNewCarPointInAverList(iterRentalCars, diffInMillies)); // если в непустом не нашли нужный, тогда делаем новый
-            } else averList.add(createNewCarPointInAverList(iterRentalCars, diffInMillies)); // если был пустой то создаем новый объект
+            } else averList.add(createNewCarPointInAverList(iterRentalCars, diffInMillies)); // если лист был пустой то создаем новый объект
         }
 
         List<String> averTimeForEachPoint = new ArrayList<>();
