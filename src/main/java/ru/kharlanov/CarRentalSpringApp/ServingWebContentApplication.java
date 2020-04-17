@@ -10,8 +10,8 @@ import ru.kharlanov.CarRentalSpringApp.config.MvcConfig;
 public class ServingWebContentApplication {
 
     public static void main(String[] args) {
-        ApplicationContext context =
-                new AnnotationConfigApplicationContext(MvcConfig.class);
+        /*ApplicationContext context =
+                new AnnotationConfigApplicationContext(MvcConfig.class);*/
         SpringApplication.run(ServingWebContentApplication.class, args);
     }
 }

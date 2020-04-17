@@ -1,29 +1,30 @@
 package ru.kharlanov.CarRentalSpringApp.controller;
 
-import org.springframework.web.bind.annotation.*;
-import ru.kharlanov.CarRentalSpringApp.Exceptions.NotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import ru.kharlanov.CarRentalSpringApp.domain.Customers;
+import ru.kharlanov.CarRentalSpringApp.repos.CustomersRepo;
+import ru.kharlanov.CarRentalSpringApp.service.RestService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("rest")
-public class RestsController {
-    private int counter = 4;
-
-    public List<Map<String, String>> restRequest = new ArrayList<Map<String, String>>() {{
-       add(new HashMap<String, String>() {{ put("id", "1"); put("text", "First message"); }});
-       add(new HashMap<String, String>() {{ put("id", "2"); put("text", "Second message"); }});
-       add(new HashMap<String, String>() {{ put("id", "3"); put("text", "Third message"); }});
-    }};
+public class RestsController{
+    //private int counter = 100;
+    @Autowired
+    private CustomersRepo customersRepoRest;
 
     @GetMapping
     public List<Map<String, String>> list() {
+        Iterable<Customers> customersList = customersRepoRest.findAll();
+        List<Map<String, String>> restRequest = RestService.restRequestCustomers(customersList);
         return restRequest;
     }
-
+/*
     @GetMapping("{id}")
     public Map<String, String> getOne(@PathVariable String id) {
         return getMessage(id);
@@ -60,5 +61,5 @@ public class RestsController {
         Map<String, String> message = getMessage(id);
 
         restRequest.remove(message);
-    }
+    }*/
 }
