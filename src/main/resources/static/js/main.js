@@ -2,7 +2,7 @@ var messageApi = Vue.resource('/rest{/id}');
 
 Vue.component('message-row', {
     props: ['message'],
-    template: '<div><i>({{ message.id }})</i> {{ message.text }}</div>'
+    template: '<div><i>({{ message.id }})</i> {{ message.fullName }}</div>'
 });
 
 Vue.component('messages-list', {

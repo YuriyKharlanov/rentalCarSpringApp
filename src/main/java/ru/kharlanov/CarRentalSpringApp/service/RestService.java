@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RestService {
+public class RestService { //TODO удалить
 
-    public static List<Map<String, String>> restRequestCustomers(Iterable<Customers> customersList) {
+    /*public static List<Map<String, String>> restRequestCustomers(Iterable<Customers> customersList) {
         List<Map<String, String>> restRequestCustomers = new ArrayList<>();
         for (Customers customerListIter: customersList) {
             restRequestCustomers.add(new HashMap<String, String>() {{
@@ -18,5 +18,5 @@ public class RestService {
             }});
         }
         return restRequestCustomers;
-    }
+    }*/
 }
