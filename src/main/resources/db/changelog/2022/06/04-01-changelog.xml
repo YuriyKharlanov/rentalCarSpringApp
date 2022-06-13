@@ -1,0 +1,121 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="liquibase (generated)" id="1654297676352-1">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="cars_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-2">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807" minValue="1" sequenceName="hibernate_sequence" startValue="1"/>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-3">
+        <createTable tableName="cars">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cars_id"/>
+            </column>
+            <column name="govern_number" type="VARCHAR(255)"/>
+            <column name="vendor_model_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-4">
+        <createTable tableName="customers">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="customers_pkey"/>
+            </column>
+            <column name="full_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-5">
+        <createTable tableName="rental_cars">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rental_cars_pkey"/>
+            </column>
+            <column name="from_rental" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="to_rental" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="cars_id" type="BIGINT"/>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="rental_point_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-6">
+        <createTable tableName="rental_point">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rental_point_pkey"/>
+            </column>
+            <column name="point_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-7">
+        <createTable tableName="user_role">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="roles" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-8">
+        <createTable tableName="usr">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="usr_pkey"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-9">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="/db/changelog/2022/06/data/cars.csv" quotchar="&quot;" separator="," tableName="cars">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="govern_number" name="govern_number" type="STRING"/>
+            <column header="vendor_model_name" name="vendor_model_name" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-10">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="/db/changelog/2022/06/data/customers.csv" quotchar="&quot;" separator="," tableName="customers">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="full_name" name="full_name" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-11">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="/db/changelog/2022/06/data/rental_cars.csv" quotchar="&quot;" separator="," tableName="rental_cars">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="from_rental" name="from_rental" type="DATE"/>
+            <column header="to_rental" name="to_rental" type="DATE"/>
+            <column header="cars_id" name="cars_id" type="NUMERIC"/>
+            <column header="customer_id" name="customer_id" type="NUMERIC"/>
+            <column header="rental_point_id" name="rental_point_id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-12">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="/db/changelog/2022/06/data/rental_point.csv" quotchar="&quot;" separator="," tableName="rental_point">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="point_name" name="point_name" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-13">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="/db/changelog/2022/06/data/user_role.csv" quotchar="&quot;" separator="," tableName="user_role">
+            <column header="user_id" name="user_id" type="NUMERIC"/>
+            <column header="roles" name="roles" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-14">
+        <loadData commentLineStartsWith="#" encoding="UTF-8" file="/db/changelog/2022/06/data/usr.csv" quotchar="&quot;" separator="," tableName="usr">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="active" name="active" type="BOOLEAN"/>
+            <column header="password" name="password" type="STRING"/>
+            <column header="username" name="username" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-15">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role" constraintName="fkfpm8swft53ulq2hl11yplpr5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="usr" validate="true"/>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-16">
+        <addForeignKeyConstraint baseColumnNames="cars_id" baseTableName="rental_cars" constraintName="fkjer9wp3dvlak41087vbjswoku" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="cars" validate="true"/>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-17">
+        <addForeignKeyConstraint baseColumnNames="rental_point_id" baseTableName="rental_cars" constraintName="fkos0i7j8as1ll9f3505bmopkf5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="rental_point" validate="true"/>
+    </changeSet>
+    <changeSet author="liquibase (generated)" id="1654297676352-18">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="rental_cars" constraintName="fkt2rjjbpcbi0kw95fchpatuxja" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="customers" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
